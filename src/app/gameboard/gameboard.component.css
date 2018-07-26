@@ -1,0 +1,255 @@
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import url('https://fonts.googleapis.com/css?family=Hanalei+Fill');
+
+
+.main{
+    width:50%;
+    background-color:pink ;
+}
+
+body {
+    margin: 0;
+    size: 30px;
+  }
+  .star {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    background-color: white;
+  }
+  
+  /* Set the animation, color, size and hide the text */
+  .intro {
+      position: absolute;
+      top: 30%;
+      left: 35%;
+      z-index: 1;
+      animation: intro 2s ease-out 1s;
+      color: rgb(75, 213, 238);
+      font-weight: 400;
+      font-size: 300%;
+      opacity: 0;
+      
+  }
+
+  #title{
+    font-family: 'Hanalei Fill', cursive;
+  }
+
+  #subtitle{
+    font-family: 'Hanalei Fill', cursive;
+  }
+
+  
+  @keyframes intro {
+      0% {
+          opacity: 0;
+      }
+      20% {
+          opacity: 1;
+      }
+      90% {
+          opacity: 1;
+      }
+      100% {
+          opacity: 0;
+      }
+  }
+  
+  /* Set the animation & hide the logo */
+  .logo {    
+      position: absolute;
+      top: 20%;
+      left: 45%;
+      z-index: 1;
+      margin: auto;
+      animation: logo 3s ease-out 3s;
+      opacity: 0;
+  }
+  
+  .logo svg {
+      width: inherit;
+  }
+  
+  /* Scale the logo down and maintain it centered */
+  @keyframes logo {
+      0% {
+          width: 18em;        
+          transform: scale(2.75);
+          opacity: 1;
+      }
+      50% {
+          opacity: 1;
+          width: 18em;      
+      }
+      100% {
+          opacity: 0;
+          transform: scale(0.1);
+          width: 18em;
+      }
+  }
+
+  
+  #p {
+    color: black;
+    text-align: center;
+    position: absolute;
+    font-family:"GangOfThree";
+    
+    
+  }
+  
+  /* Set the font, lean the board, position it */
+  #board {
+    font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
+    transform-origin: 50% 100%;
+    text-align: justify;
+    position: absolute;
+    margin-left: -9em;
+    font-weight: bold;
+    overflow: hidden;
+    font-size: 350%;
+    height: 50em;
+    width: 18em;
+    bottom: 0;
+    left: 50%;
+    }
+    
+  
+  
+  #board:after {    
+    position: absolute;
+    content: ' ';
+    bottom: 60%;
+    left: 0;
+    right: 0;
+    top: 0;
+  }
+  
+  /* Set the scrolling animation and position it */
+  #content {
+    animation: scroll 53s linear 3s;
+    position: absolute;
+    top: 100%;
+  }
+  #success{
+    text-align: center; 
+    color: darkgreen;
+    font-size: 50px;
+    margin-top:20%;
+    font-family: 'Hanalei Fill', cursive;
+  }
+
+  #failure{
+    text-align: center; 
+    color:red;
+    font-size: 50px;
+    margin-top:20%;
+    font-family: 'Hanalei Fill', cursive;
+  }
+  
+  #q0{
+    animation: scroll 53s linear 1s;
+    position: absolute;
+    top: 100%;
+    left: 420px;
+    font-family: 'Hanalei Fill', cursive;
+   
+  }
+  #q1{
+    animation: scroll 53s linear 1s;
+    position: absolute;
+    top: 100%;
+    left: 420px;  
+  }
+  #q2{
+    animation: scroll 53s linear s;
+    position: absolute;
+    top: 100%;
+    left: 420px;  
+  }
+  #q3{
+    animation: scroll 53s linear 3s;
+    position: absolute;
+    top: 100%; 
+    left: 420px; 
+  }
+  #q4{
+    animation: scroll 53s linear 3s;
+    position: absolute;
+    top: 100%; 
+    left: 420px; 
+  }
+  #q5{
+    animation: scroll 53s linear 3s;
+    position: absolute;
+    top: 100%;
+    left: 420px;  
+  }
+  #q6{
+    animation: scroll 53s linear 3s;
+    position: absolute;
+    top: 100%;
+    left: 420px;  
+  }
+  #q7{
+    animation: scroll 53s linear 3s;
+    position: absolute;
+    top: 100%;
+    left: 420px;  
+  }
+  #q8{
+    animation: scroll 53s linear 3s;
+    position: absolute;
+    top: 100%;
+    left: 420px;  
+  }
+  #q9{
+    animation: scroll 53s linear 3s;
+    position: absolute;
+    top: 100%;
+    left: 420px;  
+  }
+  #q10{
+    animation: scroll 53s linear 3s;
+    position: absolute;
+    top: 100%;
+    left: 420px;  
+  }
+  #q11{
+    animation: scroll 53s linear 3s;
+    position: absolute;
+    top: 100%;
+    left: 420px;  
+  }
+  #q12{
+    animation: scroll 53s linear 3s;
+    position: absolute;
+    top: 100%;
+    left: 420px;  
+  }
+  #q13{
+    animation: scroll 53s linear 3s;
+    position: absolute;
+    top: 100%;  
+    left: 420px;  
+  }
+  #q14{
+    animation: scroll 53s linear 3s;
+    position: absolute;
+    top: 100%;  
+    left: 420px;  
+  }
+  
+  #title, #subtitle {
+    text-align: center;
+  }
+  
+  @keyframes scroll {
+      0% {
+          top: 100%;
+      }
+      100% {
+          top: -170%;
+      }
+  }
