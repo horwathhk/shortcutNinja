@@ -1,16 +1,6 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
 @import url('https://fonts.googleapis.com/css?family=Hanalei+Fill');
 
-
-.main{
-    width:50%;
-    background-color:pink ;
-}
-
-body {
-    margin: 0;
-    size: 30px;
-  }
   .star {
     position: absolute;
     width: 1px;
@@ -40,6 +30,13 @@ body {
     font-family: 'Hanalei Fill', cursive;
   }
 
+  .scorecard{
+      -webkit-box-shadow: 3px 3px 5px 6px #ccc;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+      -moz-box-shadow:    3px 3px 5px 6px #ccc;  /* Firefox 3.5 - 3.6 */
+      box-shadow:         3px 3px 5px 6px #ccc;  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+      color:black;
+    }
+  
   
   @keyframes intro {
       0% {
