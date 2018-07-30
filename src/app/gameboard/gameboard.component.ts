@@ -1,5 +1,6 @@
 import { Component, OnInit,HostListener } from '@angular/core';
 import { CommandsService } from "../commands.service";
+import { MicrosoftExcelService } from "../microsoft-excel.service";
 
 
 export enum KEY_CODE {
@@ -26,6 +27,7 @@ export class GameboardComponent {
  rando:any;
  test_keys:any=[];
  commandNames:any=[];
+ excelCommands:any;
 
  currentShortcut:any={};
  q:any =[];
@@ -121,8 +123,7 @@ export class GameboardComponent {
     let rando = Math.floor(Math.random() * this._commandServ.commands.length); 
     console.log("Current Shortcut: " + this.currentShortcut.command);
     return this._commandServ.commands[rando];
-    // this.showShortcut = this.shortcuts[randomIndex];
-    // console.log(this.showShortcut);
+  
   }
 
   score(){
