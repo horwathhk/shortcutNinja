@@ -1,27 +1,9 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
 @import url('https://fonts.googleapis.com/css?family=Hanalei+Fill');
 
-  .star {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    background-color: white;
+  body {
+    background-image: url("/assets/pixelz.png");
   }
-  
-  /* Set the animation, color, size and hide the text */
-  .intro {
-      position: absolute;
-      top: 30%;
-      left: 35%;
-      z-index: 1;
-      animation: intro 2s ease-out 1s;
-      color: rgb(75, 213, 238);
-      font-weight: 400;
-      font-size: 300%;
-      opacity: 0;
-      
-  }
-
   #settings{
     float:right;
     margin-right:30px;
@@ -43,25 +25,9 @@
       box-shadow:         3px 3px 5px 6px #ccc;  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
       color:black;
     }
-  
-  
-  @keyframes intro {
-      0% {
-          opacity: 0;
-      }
-      20% {
-          opacity: 1;
-      }
-      90% {
-          opacity: 1;
-      }
-      100% {
-          opacity: 0;
-      }
-  }
-  
+
   /* Set the animation & hide the logo */
-  .logo {    
+  .logo {
       position: absolute;
       top: 20%;
       left: 45%;
@@ -70,37 +36,19 @@
       animation: logo 3s ease-out 3s;
       opacity: 0;
   }
-  
+
   .logo svg {
       width: inherit;
   }
-  
-  /* Scale the logo down and maintain it centered */
-  @keyframes logo {
-      0% {
-          width: 18em;        
-          transform: scale(2.75);
-          opacity: 1;
-      }
-      50% {
-          opacity: 1;
-          width: 18em;      
-      }
-      100% {
-          opacity: 0;
-          transform: scale(0.1);
-          width: 18em;
-      }
-  }
 
-  
+
   #p {
     color: black;
     text-align: center;
     position: absolute;
-    font-family:"GangOfThree"; 
+    font-family:"GangOfThree";
   }
-  
+
   /* Set the font, lean the board, position it */
 
   #board {
@@ -118,15 +66,20 @@
     left: 50%;
     }
 
+  .image-container {
+    width:302px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
  #image{
-   height:100px;
+   margin-left:21px;
+  height:100px;
    width:300px;
    opacity:.1;
-   margin-left:28%;
-   margin-top:25%;
  }
-  
-  #board:after {    
+
+  #board:after {
     position: absolute;
     content: ' ';
     bottom: 60%;
@@ -134,7 +87,7 @@
     right: 0;
     top: 0;
   }
-  
+
   /* Set the scrolling animation and position it */
   #content {
     animation: scroll 10s linear 3s;
@@ -142,7 +95,7 @@
     top: 100%;
   }
   #success{
-    text-align: center; 
+    text-align: center;
     color: darkgreen;
     font-size: 50px;
     margin-top:20%;
@@ -150,110 +103,18 @@
   }
 
   #failure{
-    text-align: center; 
+    text-align: center;
     color:red;
     font-size: 50px;
     margin-top:20%;
     font-family: 'Hanalei Fill', cursive;
   }
-  
-  #q0{
-    animation: scroll 7s linear 1s;
-    position: absolute;
-    top: 100%;
-    left: 420px;
-    font-family: 'Hanalei Fill', cursive;
-   
-  }
-  #q1{
-    animation: scroll 7s linear 1s;
-    position: absolute;
-    top: 100%;
-    left: 420px;  
-  }
-  #q2{
-    animation: scroll 7s linear s;
-    position: absolute;
-    top: 100%;
-    left: 420px;  
-  }
-  #q3{
-    animation: scroll 7s linear 3s;
-    position: absolute;
-    top: 100%; 
-    left: 420px; 
-  }
-  #q4{
-    animation: scroll 7s linear 3s;
-    position: absolute;
-    top: 100%; 
-    left: 420px; 
-  }
-  #q5{
-    animation: scroll 7s linear 3s;
-    position: absolute;
-    top: 100%;
-    left: 420px;  
-  }
-  #q6{
-    animation: scroll 7s linear 3s;
-    position: absolute;
-    top: 100%;
-    left: 420px;  
-  }
-  #q7{
-    animation: scroll 7s linear 3s;
-    position: absolute;
-    top: 100%;
-    left: 420px;  
-  }
-  #q8{
-    animation: scroll 7s linear 3s;
-    position: absolute;
-    top: 100%;
-    left: 420px;  
-  }
-  #q9{
-    animation: scroll 7s linear 3s;
-    position: absolute;
-    top: 100%;
-    left: 420px;  
-  }
-  #q10{
-    animation: scroll 7s linear 3s;
-    position: absolute;
-    top: 100%;
-    left: 420px;  
-  }
-  #q11{
-    animation: scroll 7s linear 3s;
-    position: absolute;
-    top: 100%;
-    left: 420px;  
-  }
-  #q12{
-    animation: scroll 7s linear 3s;
-    position: absolute;
-    top: 100%;
-    left: 420px;  
-  }
-  #q13{
-    animation: scroll 7s linear 3s;
-    position: absolute;
-    top: 100%;  
-    left: 420px;  
-  }
-  #q14{
-    animation: scroll 7s linear 3s;
-    position: absolute;
-    top: 100%;  
-    left: 420px;  
-  }
-  
+
+
   #title, #subtitle {
     text-align: center;
   }
-  
+
   @keyframes scroll {
       0% {
           top: 100%;
@@ -262,3 +123,21 @@
           top: -170%;
       }
   }
+
+
+  .command-display__container {
+    position: relative;
+  }
+    .command-display__background {
+      min-height: 144px;
+      width: 369px;
+      /* background-color: rgba(128, 128, 128, 0.3); */
+      margin-left: auto;
+      margin-right: auto;
+      text-align:center;
+    }
+      .command-display__text{
+        color: slategray;
+        font-size:16pt;
+        text-align:center;
+      }

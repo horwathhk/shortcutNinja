@@ -32,21 +32,24 @@ export class GameboardComponent {
  excelCommands: any;
 
  currentShortcut: any = {};
- q: any = []; // questions that have been displayed to the user
  playerReady = false;
  multiPressCounter = 0;
  success = false;
  failure = false;
  correctAnswer = 0;
+ questionHistory = [];
+
 
 
  constructor(
-   private _commandServ: CommandsService, private _microsoftExcel: MicrosoftExcelService, private sharedData: SharedServiceService
+   private _commandServ: CommandsService,
+   private _microsoftExcel: MicrosoftExcelService,
+   private sharedData: SharedServiceService
    ) { }
 
-   ngOnInit() {
-    this.sharedData.currentMessage.subscribe(message => this.message = message);
-   }
+  //  ngOnInit() {
+  //   this.sharedData.currentMessage.subscribe(message => this.message = message);
+  //  }
 
 // @HostListener('window:keydown', ['$event'])
 @HostListener('window:keydown', ['$event'])
@@ -54,8 +57,8 @@ export class GameboardComponent {
   keyEvent(event: KeyboardEvent) {
     console.log(event);
     if (!this.playerReady) {
-      this.currentShortcut = this.getRandomCommand();
-      this.q.push(true);
+      this.message = 'adobePhotoshop';
+      this.startNextQuestion();
     } else if (this.currentShortcut.key.length === 1) {
       if (event.keyCode === this.currentShortcut.key[0]) {
         console.log('User pressed ' + event.keyCode);
@@ -115,32 +118,34 @@ export class GameboardComponent {
 
 
   startNextQuestion() {
-    console.log('q array that user has seen');
-    console.log(this.q);
-    this.q[(this.q.length - 1)] = null;
-    this.q.push(true);
     this.currentShortcut = this.getRandomCommand();
-    console.log('Current Shortcut: ' + this.currentShortcut.key);
-    console.log('q array after startNextQuestion()');
-    console.log(this.q);
-    // this._changeDet.detectChanges();
+    console.log('Current Shortcut: ');
+    console.log(this.currentShortcut);
+    let dupeCheck = false;
+    if (this.questionHistory.length > 2) {
+      for (let i = this.questionHistory.length - 2; i < this.questionHistory.length; i++) {
+        const currentCommandInLoop = this.questionHistory[i];
+        if (currentCommandInLoop.name === this.currentShortcut.name) {
+          dupeCheck = true;
+          console.log('Found a dupe!');
+          this.startNextQuestion();
+          break;
+        }
+      }
+    }
+    if (dupeCheck === false) {
+      this.questionHistory.push(this.currentShortcut);
+    }
   }
 
   getRandomCommand() {
-    if (this.message === 'adobePhotoshop') {
       const rando = Math.floor(Math.random() * this._commandServ.commands.length);
-      console.log('Current Shortcut: ' + this.currentShortcut.command);
+      console.log('Current Shortcut: ' + this._commandServ.commands[rando].name);
       return this._commandServ.commands[rando];
-    } else if (this.message === 'microsoftExcel') {
-        const rando = Math.floor(Math.random() * this._microsoftExcel.commands.length);
-        console.log('Current Shortcut: ' + this.currentShortcut.command);
-        return this._microsoftExcel.commands[rando];
-    }
     }
 
   score() {
     this.correctAnswer++;
   }
-
 } // end of class
 
