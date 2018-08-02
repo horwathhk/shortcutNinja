@@ -129,17 +129,16 @@ export class GameboardComponent {
     console.log('q array after startNextQuestion()');
     console.log(this.q);
     // this._changeDet.detectChanges();
-    
   }
 
-  getRandomCommand(){
-    if(this.message == "adobePhotoshop"){  
-      let rando = Math.floor(Math.random() * this._commandServ.commands.length); 
-      console.log("Current Shortcut: " + this.currentShortcut.command);
+  getRandomCommand() {
+    if (this.message === 'adobePhotoshop') {
+      const rando = Math.floor(Math.random() * this._commandServ.commands.length);
+      console.log('Current Shortcut: ' + this.currentShortcut.command);
       return this._commandServ.commands[rando];
-    } else if(this.message == "microsoftExcel"){
-        let rando = Math.floor(Math.random() * this._microsoftExcel.commands.length); 
-        console.log("Current Shortcut: " + this.currentShortcut.command);
+    } else if (this.message === 'microsoftExcel') {
+        const rando = Math.floor(Math.random() * this._microsoftExcel.commands.length);
+        console.log('Current Shortcut: ' + this.currentShortcut.command);
         return this._microsoftExcel.commands[rando];
     }
     }
