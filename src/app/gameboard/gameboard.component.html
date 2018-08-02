@@ -7,17 +7,22 @@
         </thead>
         <tbody>
           <tr>
-            <th scope="row"></th>
-            <td>Correct Answers: {{correctAnswer}}/20</td>
+            <td>Selected Library:</td>
+            <td>{{message}}</td>
+          </tr>
+          <tr>
+            <td>Correct Answers:</td>
+            <td>{{correctAnswer}}/14</td>
           </tr>
       </tbody>
     </table>
 
-
+   
 
     <section class="intro">
-  To master Photoshop, one must<br> become Photoshop....
+  "To master Photoshop, one must<br> become Photoshop...."<br>--Bruce Lee
 </section>
+
 
 <!--
 <section class="logo">
@@ -115,7 +120,8 @@
 <p id="failure" *ngIf="failure">Incorrect</p>
 
 <!-- Change the text to your liking -->
-<div id="board">  
+<div id="board">
+    <img id="image" src="assets/pixelz.png">  
   <div *ngIf="!playerReady" id="content">
     <p id="title">Keyboard Shortcut Ninja Game</p>
     <p id="subtitle">Press any key to begin</p>

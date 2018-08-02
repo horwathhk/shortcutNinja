@@ -1,1 +1,8 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
+
+.form-group{
+    margin-top:20px;
+}
+.radio{
+    margin-left:20px;
+}

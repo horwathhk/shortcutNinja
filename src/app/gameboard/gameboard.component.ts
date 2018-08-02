@@ -1,7 +1,8 @@
 import { Component, OnInit,HostListener } from '@angular/core';
 import { CommandsService } from "../commands.service";
 import { MicrosoftExcelService } from "../microsoft-excel.service";
-
+import { SharedServiceService } from "../shared-service.service";
+//https://www.youtube.com/watch?v=I317BhehZKM&t=105s
 
 export enum KEY_CODE {
   RIGHT_ARROW = 39,
@@ -14,6 +15,9 @@ export enum KEY_CODE {
   styleUrls: ['./gameboard.component.css']
 })
 export class GameboardComponent {
+ message:any={};
+
+
  value:number= 0;
  name:string;
  names:any=[]=[];
@@ -38,9 +42,13 @@ export class GameboardComponent {
  correctAnswer:number=0;
 
 
- constructor(private _commandServ:CommandsService ) { }
+ constructor(private _commandServ:CommandsService, private _microsoftExcel:MicrosoftExcelService,  private sharedData: SharedServiceService ) { }
+ 
  ngOnInit() {
-    
+  this.sharedData.currentMessage.subscribe(message =>this.message = message)
+  console.log("from gameboard" + this.message);
+  
+  
 // Gets random x, y values based on the size of the container
   var y = window.innerWidth;
   var x = window.innerHeight;
@@ -119,16 +127,23 @@ export class GameboardComponent {
     this.currentShortcut = this.getRandomCommand();
   }
 
-  getRandomCommand(){  
-    let rando = Math.floor(Math.random() * this._commandServ.commands.length); 
-    console.log("Current Shortcut: " + this.currentShortcut.command);
-    return this._commandServ.commands[rando];
-  
-  }
+  getRandomCommand(){
+    if(this.message == "adobePhotoshop"){  
+      let rando = Math.floor(Math.random() * this._commandServ.commands.length); 
+      console.log("Current Shortcut: " + this.currentShortcut.command);
+      return this._commandServ.commands[rando];
+    } else if(this.message == "microsoftExcel"){
+        let rando = Math.floor(Math.random() * this._microsoftExcel.commands.length); 
+        console.log("Current Shortcut: " + this.currentShortcut.command);
+        return this._microsoftExcel.commands[rando];
+    }
+    }
 
   score(){
     this.correctAnswer++;
   }
+
+ 
 
 }//end of class
 

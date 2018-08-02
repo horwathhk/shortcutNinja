@@ -4,21 +4,22 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class MicrosoftExcelService {
-
+  name:string;
+  key:number;
   constructor() { }
 
-  excelCommands = [
+  commands = [
     {
       name:"this is an xcel command press 1", 
-      key:[1]
+      key:[49]
     }, 
     {
       name:"this is an xcel command press 2", 
-      key:[2]
+      key:[50]
     }, 
     {
       name:"this is an xcel command press 3", 
-      key:[3]
+      key:[51]
     },
   ]
 }

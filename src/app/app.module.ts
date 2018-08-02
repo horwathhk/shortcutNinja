@@ -9,11 +9,13 @@ import { FormsModule } from '@angular/forms';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavComponent } from './nav/nav.component';
-import {RouterModule, Routes} from '@angular/router'
+import {RouterModule, Routes} from '@angular/router';
+import { ReferencesComponent } from './references/references.component'
 
 const appRoutes: Routes = [
   {path:'gameboard', component: GameboardComponent},
   {path:'settings', component:SettingsComponent},
+  {path:'references', component:ReferencesComponent},
   {path:'', redirectTo: '/gameboard', pathMatch:'full'},
  ];
 
@@ -22,7 +24,8 @@ const appRoutes: Routes = [
     AppComponent,
     GameboardComponent,
     SettingsComponent,
-    NavComponent
+    NavComponent,
+    ReferencesComponent
   ],
   imports: [
     BrowserModule,

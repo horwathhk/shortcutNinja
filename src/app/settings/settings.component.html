@@ -1,23 +1,40 @@
 
-<!--Needs to be only able to select a single library-->
+<!--Needs to be only able to select a single library. Need to change "captivate" to excel to match the name of the service-->
 <form #settings="ngForm" (ngSubmit)="setSettings(settings)">
     <div class="form-group">
-        <label>Photoshop</label>
+        <h4>Select Shortcut Library</h4>
         <div class="form-control">
-          <label class="radio-inline">
+          <label class="radio">
             <input type="radio" value="adobePhotoshop" name="library" [(ngModel)]="library">
             Adobe Photoshop
           </label>
-          <label class="radio-inline">
-            <input type="radio"  value="adobeCaptivate" name="library" [(ngModel)]="library">
-            Adobe Captivate
+          <label class="radio">
+            <input type="radio"  value="microsoftExcel" name="library" [(ngModel)]="library">
+            Microsoft Excel
           </label>
         </div>
+      </div>
+    <div class="form-group">
+          <h4>Game Speed</h4>
+          <div class="form-control">
+            <label class="radio">
+              <input type="radio" value="novice" name="gamespeed" [(ngModel)]="gamespeed">
+              Novice
+            </label>
+            <label class="radio">
+              <input type="radio"  value="intermediate" name="gamespeed" [(ngModel)]="gamespeed">
+              Intermediate
+            </label>
+            <label class="radio">
+                <input type="radio"  value="advanced" name="gamespeed" [(ngModel)]="gamespeed">
+                Advanced
+              </label>
+          </div>
         <div class="panel-footer">
             <button class="btn btn-primary" type="submit">Save</button>
           </div>
-      </div>
+          </div>
       
 </form>
   
-{{settings.value | json}}
+{{setting | json}}

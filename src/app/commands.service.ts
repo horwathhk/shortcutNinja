@@ -11,8 +11,8 @@ export class CommandsService {
 
   commands = [
     {
-      name:"Align Text Left", 
-      key:[17,16,76]
+      name:"one", 
+      key:[1]
     }, 
     {
       name:"two", 
