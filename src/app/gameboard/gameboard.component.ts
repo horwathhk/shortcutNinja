@@ -1,8 +1,16 @@
+<<<<<<< HEAD
 import { Component, OnInit,HostListener } from '@angular/core';
 import { CommandsService } from "../commands.service";
 import { MicrosoftExcelService } from "../microsoft-excel.service";
 import { SharedServiceService } from "../shared-service.service";
 //https://www.youtube.com/watch?v=I317BhehZKM&t=105s
+=======
+import { Component, OnInit, HostListener } from '@angular/core';
+import { CommandsService } from '../commands.service';
+import { MicrosoftExcelService } from '../microsoft-excel.service';
+import { ChangeDetectorRef } from '@angular/core';
+
+>>>>>>> 33993e667e18a25a4a3cd22f3b8026eaac00ff59
 
 export enum KEY_CODE {
   RIGHT_ARROW = 39,
@@ -15,6 +23,7 @@ export enum KEY_CODE {
   styleUrls: ['./gameboard.component.css']
 })
 export class GameboardComponent {
+<<<<<<< HEAD
  message:any={};
 
 
@@ -57,47 +66,87 @@ export class GameboardComponent {
     return [randomX,randomY];
 
 }//end of ngOnInit
+=======
+ value = 0;
+ name: string;
+ names: any = [];
+ showName: any;
+ key: number;
+ keys: any = [];
+ showKey: any;
+ command: any;
+ shortcuts: any = [];
+ showShortcut: any;
+ rando: any;
+ test_keys: any = [];
+ commandNames: any = [];
+ excelCommands: any;
+>>>>>>> 33993e667e18a25a4a3cd22f3b8026eaac00ff59
 
-@HostListener('window:keydown', ['$event'])
+ currentShortcut: any = {};
+ q: any = []; // questions that have been displayed to the user
+ playerReady = false;
+ multiPressCounter = 0;
+ success = false;
+ failure = false;
+ correctAnswer = 0;
+
+
+ constructor(
+   private _commandServ: CommandsService,
+   private _changeDet: ChangeDetectorRef
+   ) { }
+//   ngOnInit() {
+//   // Gets random x, y values based on the size of the container
+//     let y = window.innerWidth;
+//     let x = window.innerHeight;
+//     let randomX: number = Math.floor(Math.random() * x);
+//     let randomY: number = Math.floor(Math.random() * y);
+//     return [randomX, randomY];
+
+// } // end of ngOnInit
+
+// @HostListener('window:keydown', ['$event'])
 @HostListener('window:keydown', ['$event'])
 
   keyEvent(event: KeyboardEvent) {
     console.log(event);
-    if(!this.playerReady){
+    if (!this.playerReady) {
       this.currentShortcut = this.getRandomCommand();
       this.q.push(true);
-    } else if(this.currentShortcut.key.length==1){
+    } else if (this.currentShortcut.key.length === 1) {
       if (event.keyCode === this.currentShortcut.key[0]) {
-        console.log("User pressed " + event.keyCode);
-        console.log("Tot lam!");
+        console.log('User pressed ' + event.keyCode);
+        console.log('Tot lam!');
         this.showSuccessMessage();
         this.score();
         this.startNextQuestion();
       } else {
-        console.log("User pressed " + event.keyCode + " which is incorrect");
-        console.log("USTED NO BUENO");
+        console.log('User pressed ' + event.keyCode + ' which is incorrect');
+        console.log('USTED NO BUENO');
         this.showFailureMessage();
-        this.startNextQuestion()
+        this.startNextQuestion();
       }
-    } else if (this.currentShortcut.key.length>1) {
-      let shortcutLen = this.currentShortcut.key.length
+    } else if (this.currentShortcut.key.length > 1) {
+      const shortcutLen = this.currentShortcut.key.length;
+      // multiPressCounter starts as 0
       if (event.keyCode === this.currentShortcut.key[this.multiPressCounter]) {
-        console.log("Correct-ish...User pressed " + event.keyCode);
+        console.log('Correct-ish...User pressed ' + event.keyCode);
         // successful first key
       } else {
         this.showFailureMessage();
-        console.log("User pressed " + event.keyCode + " which is incorrect");
+        console.log('User pressed ' + event.keyCode + ' which is incorrect');
       }
-      if(shortcutLen === (this.multiPressCounter + 1)){
-        console.log("Tot lam!");
+      if (shortcutLen === (this.multiPressCounter + 1)) {
+        console.log('Tot lam!');
         if (event.keyCode === this.currentShortcut.key[this.multiPressCounter]) {
-          console.log("YOU WIN...User pressed " + event.keyCode);
+          console.log('YOU WIN...User pressed ' + event.keyCode);
           this.showSuccessMessage();
           this.score();
           // you actually did it
           this.startNextQuestion();
         } else {
-          console.log("User pressed " + event.keyCode + " which is incorrect");
+          console.log('User pressed ' + event.keyCode + ' which is incorrect');
           this.showFailureMessage();
           this.startNextQuestion();
         }
@@ -105,28 +154,43 @@ export class GameboardComponent {
       ++this.multiPressCounter;
     }
     this.playerReady = true;
+    this._changeDet.detectChanges();
   }
 
-    showSuccessMessage(){
+    showSuccessMessage() {
     this.success = true;
-    setTimeout(()=>{
+    setTimeout(() => {
       this.success = false;
-    }, 1500)
+    }, 1500);
   }
 
-  showFailureMessage(){
+  showFailureMessage() {
     this.failure = true;
-    setTimeout(()=>{
+    setTimeout(() => {
       this.failure = false;
-    }, 1500)
+    }, 1500);
   }
-  
-  startNextQuestion(){
-    this.q[(this.q.length-1)] = null;
+
+  justInCase() {
+    setTimeout(() => {
+    this._changeDet.detectChanges();
+    }, 1500);
+  }
+
+  startNextQuestion() {
+    console.log('q array that user has seen');
+    console.log(this.q);
+    this.q[(this.q.length - 1)] = null;
     this.q.push(true);
     this.currentShortcut = this.getRandomCommand();
+    console.log('Current Shortcut: ' + this.currentShortcut.key);
+    console.log('q array after startNextQuestion()');
+    console.log(this.q);
+    // this._changeDet.detectChanges();
+    this.justInCase();
   }
 
+<<<<<<< HEAD
   getRandomCommand(){
     if(this.message == "adobePhotoshop"){  
       let rando = Math.floor(Math.random() * this._commandServ.commands.length); 
@@ -138,12 +202,23 @@ export class GameboardComponent {
         return this._microsoftExcel.commands[rando];
     }
     }
+=======
+  getRandomCommand() {
+    const rando = Math.floor(Math.random() * this._commandServ.commands.length);
+    console.log('Random number is: ' + rando);
+    return this._commandServ.commands[rando];
+  }
+>>>>>>> 33993e667e18a25a4a3cd22f3b8026eaac00ff59
 
-  score(){
+  score() {
     this.correctAnswer++;
   }
 
+<<<<<<< HEAD
  
 
 }//end of class
+=======
+} // end of class
+>>>>>>> 33993e667e18a25a4a3cd22f3b8026eaac00ff59
 

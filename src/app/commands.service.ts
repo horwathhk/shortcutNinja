@@ -4,37 +4,43 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class CommandsService {
- name:string;
- key:number;
+ name: string;
+ key: number;
 
   constructor() { }
 
   commands = [
     {
+<<<<<<< HEAD
       name:"one", 
       key:[1]
     }, 
+=======
+      name: 'Align Text Left',
+      key: [17, 16, 76]
+    },
+>>>>>>> 33993e667e18a25a4a3cd22f3b8026eaac00ff59
     {
-      name:"two", 
-      key:[50]
-    }, 
-    {
-      name:"three", 
-      key:[51]
+      name: 'two',
+      key: [50]
     },
     {
-      name:"four", 
-      key:[52]
-    }, 
+      name: 'three',
+      key: [51]
+    },
     {
-      name:"five", 
-      key:[53]
-    }, 
+      name: 'four',
+      key: [52]
+    },
     {
-      name:"six", 
-      key:[54]
-    } 
-  ]
+      name: 'five',
+      key: [53]
+    },
+    {
+      name: 'six',
+      key: [54]
+    }
+  ];
 }
 
 
