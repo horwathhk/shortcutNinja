@@ -1,5 +1,6 @@
 
 <!--Needs to be only able to select a single library. Need to change "captivate" to excel to match the name of the service-->
+<div id="main">
 <form #settings="ngForm" (ngSubmit)="setSettings(settings)">
     <div class="form-group">
         <h4>Select Shortcut Library</h4>
@@ -36,5 +37,6 @@
           </div>
       
 </form>
+</div>
   
 {{setting | json}}

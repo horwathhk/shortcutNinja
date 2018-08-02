@@ -1,5 +1,9 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
 
+#main{
+    margin-left:20px;
+}
+
 .form-group{
     margin-top:20px;
 }
