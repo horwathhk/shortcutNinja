@@ -1,6 +1,7 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { CommandsService } from '../commands.service';
 import { MicrosoftExcelService } from '../microsoft-excel.service';
+import {SharedServiceService} from '../shared-service.service';
 
 
 export enum KEY_CODE {
@@ -40,18 +41,12 @@ export class GameboardComponent {
 
 
  constructor(
-   private _commandServ: CommandsService,
-   private _microsoftExcel: MicrosoftExcelService
+   private _commandServ: CommandsService, private _microsoftExcel: MicrosoftExcelService, private sharedData: SharedServiceService
    ) { }
-//   ngOnInit() {
-//   // Gets random x, y values based on the size of the container
-//     let y = window.innerWidth;
-//     let x = window.innerHeight;
-//     let randomX: number = Math.floor(Math.random() * x);
-//     let randomY: number = Math.floor(Math.random() * y);
-//     return [randomX, randomY];
 
-// } // end of ngOnInit
+   ngOnInit() {
+    this.sharedData.currentMessage.subscribe(message => this.message = message);
+   }
 
 // @HostListener('window:keydown', ['$event'])
 @HostListener('window:keydown', ['$event'])

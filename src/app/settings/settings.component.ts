@@ -11,8 +11,7 @@ export class SettingsComponent implements OnInit {
   message: any = {};
   currentMessage: any;
   setting: any = {};
-  library;
-  gameSpeed;
+
 
   constructor(private sharedData: SharedServiceService) { }
 
