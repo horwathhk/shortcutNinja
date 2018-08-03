@@ -10,7 +10,8 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavComponent } from './nav/nav.component';
 import {RouterModule, Routes} from '@angular/router';
-import { ReferencesComponent } from './references/references.component'
+import { ReferencesComponent } from './references/references.component';
+import { FooterComponent } from './footer/footer.component'
 
 const appRoutes: Routes = [
   {path:'gameboard', component: GameboardComponent},
@@ -25,7 +26,8 @@ const appRoutes: Routes = [
     GameboardComponent,
     SettingsComponent,
     NavComponent,
-    ReferencesComponent
+    ReferencesComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

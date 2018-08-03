@@ -1,6 +1,5 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { CommandsService } from '../commands.service';
-import { MicrosoftExcelService } from '../microsoft-excel.service';
 import {SharedServiceService} from '../shared-service.service';
 
 
@@ -19,7 +18,8 @@ export class GameboardComponent {
  value = 0;
  name: string;
  names: any = [];
- showName: any;
+ successMessage:string;
+ //showName: any;
  key: number;
  keys: any = [];
  showKey: any;
@@ -28,14 +28,17 @@ export class GameboardComponent {
  showShortcut: any;
  rando: any;
  test_keys: any = [];
- commandNames: any = [];
+ //commandNames: any = [];
  excelCommands: any;
+ help:boolean=false;
+ answer:string;
 
  currentShortcut: any = {};
  playerReady = false;
  multiPressCounter = 0;
  success = false;
  failure = false;
+ displayText=true;
  correctAnswer = 0;
  questionHistory = [];
 
@@ -43,13 +46,13 @@ export class GameboardComponent {
 
  constructor(
    private _commandServ: CommandsService,
-   private _microsoftExcel: MicrosoftExcelService,
+   //private _microsoftExcel: MicrosoftExcelService,
    private sharedData: SharedServiceService
    ) { }
 
-  //  ngOnInit() {
-  //   this.sharedData.currentMessage.subscribe(message => this.message = message);
-  //  }
+   ngOnInit() {
+    this.sharedData.currentMessage.subscribe(message => this.message = message);
+   }
 
 // @HostListener('window:keydown', ['$event'])
 @HostListener('window:keydown', ['$event'])
@@ -57,8 +60,12 @@ export class GameboardComponent {
   keyEvent(event: KeyboardEvent) {
     console.log(event);
     if (!this.playerReady) {
-      this.message = 'adobePhotoshop';
+      this.getRandomCommand();
+      console.log("get random fired and this is the messge:"+ this.message);
       this.startNextQuestion();
+      //shan
+      // this.message = 'adobePhotoshop';
+      // this.startNextQuestion();
     } else if (this.currentShortcut.key.length === 1) {
       if (event.keyCode === this.currentShortcut.key[0]) {
         console.log('User pressed ' + event.keyCode);
@@ -101,17 +108,21 @@ export class GameboardComponent {
     this.playerReady = true;
   }
 
-    showSuccessMessage() {
+  showSuccessMessage() {
     this.success = true;
+    this.displayText = false;
     setTimeout(() => {
       this.success = false;
+      this.displayText = true;
     }, 1500);
   }
 
   showFailureMessage() {
     this.failure = true;
+    this.displayText = false;
     setTimeout(() => {
       this.failure = false;
+      this.displayText = true;
     }, 1500);
   }
 
@@ -139,13 +150,36 @@ export class GameboardComponent {
   }
 
   getRandomCommand() {
-      const rando = Math.floor(Math.random() * this._commandServ.commands.length);
-      console.log('Current Shortcut: ' + this._commandServ.commands[rando].name);
-      return this._commandServ.commands[rando];
+    if (this.message === 'adobePhotoshop') {
+      const rando = Math.floor(Math.random() * this._commandServ.photoShopCommands.length);
+      console.log('Current Shortcut: ' + this.currentShortcut.command);
+      return this._commandServ.photoShopCommands[rando];
+    } else if (this.message === 'microsoftExcel') {
+        const rando = Math.floor(Math.random() * this._commandServ.excelCommands.length);
+        console.log('Current Shortcut: ' + this.currentShortcut.command);
+        return this._commandServ.excelCommands[rando];
     }
+    }
+    
+    
+    
+    
+    // const rando = Math.floor(Math.random() * this._commandServ.commands.length);
+    //   console.log('Current Shortcut: ' + this._commandServ.commands[rando].name);
+    //   return this._commandServ.commands[rando];
+    
 
   score() {
     this.correctAnswer++;
   }
+
+  helper(){
+    this.help = true;
+      setTimeout(() => {
+        this.help = false;
+      }, 800);
+    }
+    
+  
 } // end of class
 

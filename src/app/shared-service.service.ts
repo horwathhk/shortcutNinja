@@ -5,7 +5,7 @@ import { BehaviorSubject } from '../../node_modules/rxjs';
   providedIn: 'root'
 })
 export class SharedServiceService {
- private messageSource = new BehaviorSubject<any>('default message');
+ private messageSource = new BehaviorSubject<any>('Select A Library in Settings');
  currentMessage = this.messageSource.asObservable();
 
   constructor() { }

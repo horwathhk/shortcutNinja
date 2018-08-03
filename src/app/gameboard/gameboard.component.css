@@ -1,20 +1,27 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
 @import url('https://fonts.googleapis.com/css?family=Hanalei+Fill');
 
-  body {
-    background-image: url("/assets/pixelz.png");
-  }
+@font-face { font-family: "ARCADECLASSIC";
+  src: url("/assets/ARCADECLASSIC.TTF");
+}
+
+.main{
+  background:#f2f4f8;
+}
+
   #settings{
     float:right;
     margin-right:30px;
   }
 
   #title{
-    font-family: 'Hanalei Fill', cursive;
+    /*font-family: 'Hanalei Fill', cursive;*/
+    font-family: "arcadeclassic";
   }
 
   #subtitle{
     font-family: 'Hanalei Fill', cursive;
+    font-family: "arcadeclassic";
   }
 
   .scorecard{
@@ -64,6 +71,7 @@
     width: 18em;
     bottom: 0;
     left: 50%;
+    
     }
 
   .image-container {
@@ -95,19 +103,19 @@
     top: 100%;
   }
   #success{
-    text-align: center;
-    color: darkgreen;
-    font-size: 50px;
-    margin-top:20%;
-    font-family: 'Hanalei Fill', cursive;
+    color:green;
+    font-size:60pt;
+    text-align:center;
+    font-family:"arcadeclassic";
+    margin-top:40%;
   }
 
   #failure{
-    text-align: center;
     color:red;
-    font-size: 50px;
-    margin-top:20%;
-    font-family: 'Hanalei Fill', cursive;
+    font-size:60pt;
+    text-align:center;
+    font-family: "arcadeclassic";
+    margin-top:40%;
   }
 
 
@@ -137,7 +145,38 @@
       text-align:center;
     }
       .command-display__text{
-        color: slategray;
-        font-size:16pt;
+        color:black;
+        font-size:60pt;
         text-align:center;
+        font-family: "roboto";
+        margin-top:40%;
       }
+
+#help{
+  float:right;
+  margin-right:20px;
+  margin-bottom:-25px;
+  background-color:gray;
+  text-align: center;
+  margin-right:20px;
+ 
+}
+
+#button {
+  background-color:gray;
+  border: none;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+
+}
+#button4 {border-radius: 12px;}
+
+#answer{
+  color:white;
+
+}

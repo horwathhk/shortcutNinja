@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
 
   <div id="main">
     <div class="row">
@@ -22,7 +24,9 @@
       <div class="col-sm-4">
           <div class="command-display__container">
             <div class="command-display__background">
-              <div class="command-display__text">{{currentShortcut.name}}</div>
+              <div class="command-display__text" *ngIf="displayText">{{currentShortcut.name}}</div>
+              <p id="success" *ngIf="success">Correct</p>
+              <p id="failure" *ngIf="failure">Incorrect</p>
             </div>
           </div>
       </div>
@@ -30,8 +34,7 @@
     </div><!-- /row -->
 
 
-<p id="success" *ngIf="success">correct</p>
-<p id="failure" *ngIf="failure">Incorrect</p>
+
 
 <br>
   <!-- Change the text to your liking -->
@@ -43,12 +46,23 @@
     </div>
       <br>
       <br>
+    </div>
+
+<br>
+<br>
+<div id="help">
+    <button id="button button4" (click)="helper()" >
+        <i class="fa fa-question-circle"></i>
+        help
+    </button>
+    <div id="answer" *ngIf="help">{{currentShortcut.answer}}</div>
   </div>
-</div>
-<br>
-<br>
-<!-- <div class="image-container">
-    <img id="image" src="assets/pixelz.png">
-  </div> -->
+  </div>
+
+  
 
 
+  
+
+
+      
