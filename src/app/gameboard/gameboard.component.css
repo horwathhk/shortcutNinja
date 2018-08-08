@@ -73,7 +73,7 @@
     width: 18em;
     bottom: 0;
     left: 50%;
-    
+
     }
 
   .image-container {
@@ -148,7 +148,7 @@
     }
       .command-display__text{
         color:black;
-        font-size:60pt;
+        font-size:44pt;
         text-align:center;
         font-family: "roboto";
         margin-top:40%;
@@ -161,7 +161,7 @@
   background-color:gray;
   text-align: center;
   margin-right:20px;
- 
+
 }
 
 #button {

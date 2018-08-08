@@ -24,7 +24,7 @@
       <div class="col-sm-4">
           <div class="command-display__container">
             <div class="command-display__background">
-              <div class="command-display__text" *ngIf="displayText">{{currentShortcut.name}}</div>
+              <div class="command-display__text" *ngIf="displayText && currentShortcut">{{currentShortcut.name}}</div>
               <p id="success" *ngIf="success">Correct</p>
               <p id="failure" *ngIf="failure">Incorrect</p>
             </div>
@@ -47,7 +47,7 @@
     <br>
     <br>
   </div>
-  
+
   <br>
   <br>
   <div>
@@ -67,10 +67,10 @@
   </div>
 </div>
 
-  
 
 
-  
 
 
-      
+
+
+

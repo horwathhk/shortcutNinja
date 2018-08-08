@@ -1,6 +1,6 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { CommandsService } from '../commands.service';
-import {SharedServiceService} from '../shared-service.service';
+import { SharedServiceService } from '../shared-service.service';
 
 
 export enum KEY_CODE {
@@ -18,8 +18,8 @@ export class GameboardComponent {
  value = 0;
  name: string;
  names: any = [];
- successMessage:string;
- //showName: any;
+ successMessage: string;
+ // showName: any;
  key: number;
  keys: any = [];
  showKey: any;
@@ -28,17 +28,17 @@ export class GameboardComponent {
  showShortcut: any;
  rando: any;
  test_keys: any = [];
- //commandNames: any = [];
+ // commandNames: any = [];
  excelCommands: any;
- help:boolean=false;
- answer:string;
+ help = false;
+ answer: string;
 
  currentShortcut: any = {};
  playerReady = false;
  multiPressCounter = 0;
  success = false;
  failure = false;
- displayText=true;
+ displayText = true;
  correctAnswer = 0;
  questionHistory = [];
 
@@ -48,12 +48,16 @@ export class GameboardComponent {
 
  constructor(
    private _commandServ: CommandsService,
-   //private _microsoftExcel: MicrosoftExcelService,
+   // private _microsoftExcel: MicrosoftExcelService,
    private sharedData: SharedServiceService
    ) { }
 
    ngOnInit() {
-    this.sharedData.currentMessage.subscribe(message => this.message = message);
+    this.message = 'adobePhotoshop';
+    this.sharedData.currentMessage.subscribe(message => {
+        this.message = message;
+      }
+    );
    }
 
 @HostListener('window:keydown', ['$event'])
@@ -61,13 +65,13 @@ export class GameboardComponent {
 @HostListener('window:keyup', ['$event'])
 
   keyEvent(event: KeyboardEvent) {
-    console.log("The event", event);
+    console.log('The event', event);
     if (!this.playerReady) {
       this.getRandomCommand();
-      console.log("get random fired and this is the messge:"+ this.message);
+      console.log('get random fired and this is the messge:' + this.message);
       this.startNextQuestion();
 
-      //shan
+      // shan
       // this.message = 'adobePhotoshop';
       // this.startNextQuestion();
     } else if (this.isShortcutOnlyOneKey(this.currentShortcut)) {
@@ -86,15 +90,14 @@ export class GameboardComponent {
     } else if (this.isShortcutMultipleKeys(this.currentShortcut)) {
       const shortcutLen = this.currentShortcut.key.length;
       // add to the keydown map
-      if(event.type == "keydown" && this.keydownMap[this.keydownMap.length-1] !== event.keyCode) {
+      if (event.type === 'keydown' && this.keydownMap[this.keydownMap.length - 1] !== event.keyCode) {
         this.keydownMap.push(event.keyCode);
       }
-      console.log("The Keydown Map:", this.keydownMap);
+      console.log('The Keydown Map:', this.keydownMap);
       // check if the keydown map has all the needed keys
-      if (this.keydownMap.length === shortcutLen && event.type === "keyup") {
+      if (this.keydownMap.length === shortcutLen && event.type === 'keyup') {
 
         this.evaluateAnswer();
-        
       }
 
 
@@ -136,15 +139,15 @@ export class GameboardComponent {
   isKeydownMapCorrect(kdm, cs) {
     // kdm = keydownMap, cs = currentShortcut
     let correctCheck = true;
-    for(var i=0; i<kdm.length; i++) {
-      let currentKeydown = kdm[i];
-      let currentShortcutKey = cs.key[i];
-      if(currentKeydown !== currentShortcutKey) {
+    for (let i = 0; i < kdm.length; i++) {
+      const currentKeydown = kdm[i];
+      const currentShortcutKey = cs.key[i];
+      if (currentKeydown !== currentShortcutKey) {
         correctCheck = false;
         break;
       }
     }
-    console.log("Keydown map was " + correctCheck);
+    console.log('Keydown map was ' + correctCheck);
     return correctCheck;
   }
 
@@ -153,7 +156,7 @@ export class GameboardComponent {
   }
 
   evaluateAnswer() {
-    if(this.isKeydownMapCorrect(this.keydownMap, this.currentShortcut)) {
+    if (this.isKeydownMapCorrect(this.keydownMap, this.currentShortcut)) {
       this.clearTheKeydownMap();
       this.showSuccessMessage();
       this.addToCorrectScoreCounter();
@@ -217,27 +220,22 @@ export class GameboardComponent {
         return this._commandServ.excelCommands[rando];
     }
     }
-    
-    
-    
-    
+
     // const rando = Math.floor(Math.random() * this._commandServ.commands.length);
     //   console.log('Current Shortcut: ' + this._commandServ.commands[rando].name);
     //   return this._commandServ.commands[rando];
-    
 
   addToCorrectScoreCounter() {
     this.correctAnswer++;
   }
 
-  helper(){
+  helper() {
     this.help = true;
       setTimeout(() => {
         this.help = false;
       }, 800);
     
     }
-    
-  
+
 } // end of class
 
