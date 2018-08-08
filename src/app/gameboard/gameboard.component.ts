@@ -42,6 +42,8 @@ export class GameboardComponent {
  correctAnswer = 0;
  questionHistory = [];
 
+ keydownMap = [];
+
 
 
  constructor(
@@ -54,24 +56,26 @@ export class GameboardComponent {
     this.sharedData.currentMessage.subscribe(message => this.message = message);
    }
 
-// @HostListener('window:keydown', ['$event'])
 @HostListener('window:keydown', ['$event'])
 
+@HostListener('window:keyup', ['$event'])
+
   keyEvent(event: KeyboardEvent) {
-    console.log(event);
+    console.log("The event", event);
     if (!this.playerReady) {
       this.getRandomCommand();
       console.log("get random fired and this is the messge:"+ this.message);
       this.startNextQuestion();
+
       //shan
       // this.message = 'adobePhotoshop';
       // this.startNextQuestion();
-    } else if (this.currentShortcut.key.length === 1) {
+    } else if (this.isShortcutOnlyOneKey(this.currentShortcut)) {
       if (event.keyCode === this.currentShortcut.key[0]) {
         console.log('User pressed ' + event.keyCode);
         console.log('Tot lam!');
         this.showSuccessMessage();
-        this.score();
+        this.addToCorrectScoreCounter();
         this.startNextQuestion();
       } else {
         console.log('User pressed ' + event.keyCode + ' which is incorrect');
@@ -79,33 +83,86 @@ export class GameboardComponent {
         this.showFailureMessage();
         this.startNextQuestion();
       }
-    } else if (this.currentShortcut.key.length > 1) {
+    } else if (this.isShortcutMultipleKeys(this.currentShortcut)) {
       const shortcutLen = this.currentShortcut.key.length;
-      // multiPressCounter starts as 0
-      if (event.keyCode === this.currentShortcut.key[this.multiPressCounter]) {
-        console.log('Correct-ish...User pressed ' + event.keyCode);
-        // successful first key
-      } else {
-        this.showFailureMessage();
-        console.log('User pressed ' + event.keyCode + ' which is incorrect');
+      // add to the keydown map
+      if(event.type == "keydown" && this.keydownMap[this.keydownMap.length-1] !== event.keyCode) {
+        this.keydownMap.push(event.keyCode);
       }
-      if (shortcutLen === (this.multiPressCounter + 1)) {
-        console.log('Tot lam!');
-        if (event.keyCode === this.currentShortcut.key[this.multiPressCounter]) {
-          console.log('YOU WIN...User pressed ' + event.keyCode);
-          this.showSuccessMessage();
-          this.score();
-          // you actually did it
-          this.startNextQuestion();
-        } else {
-          console.log('User pressed ' + event.keyCode + ' which is incorrect');
-          this.showFailureMessage();
-          this.startNextQuestion();
-        }
+      console.log("The Keydown Map:", this.keydownMap);
+      // check if the keydown map has all the needed keys
+      if (this.keydownMap.length === shortcutLen && event.type === "keyup") {
+
+        this.evaluateAnswer();
+        
       }
-      ++this.multiPressCounter;
+
+
+      // // multiPressCounter starts as 0
+      // if (event.keyCode === this.currentShortcut.key[this.multiPressCounter]) {
+      //   console.log('Correct-ish...User pressed ' + event.keyCode);
+      //   // successful first key
+      // } else {
+      //   this.showFailureMessage();
+      //   console.log('User pressed ' + event.keyCode + ' which is incorrect');
+      // }
+      // if (shortcutLen === (this.multiPressCounter + 1)) {
+      //   console.log('Tot lam!');
+      //   if (event.keyCode === this.currentShortcut.key[this.multiPressCounter]) {
+      //     console.log('YOU WIN...User pressed ' + event.keyCode);
+      //     this.showSuccessMessage();
+      //     this.addToCorrectScoreCounter();
+      //     // you actually did it
+      //     this.startNextQuestion();
+      //   } else {
+      //     console.log('User pressed ' + event.keyCode + ' which is incorrect');
+      //     this.showFailureMessage();
+      //     this.startNextQuestion();
+      //   }
+      // }
+      // ++this.multiPressCounter;
     }
     this.playerReady = true;
+  }
+
+  isShortcutOnlyOneKey(shortcut) {
+    // shortcuts have a key and name properties
+    return (shortcut.key.length === 1);
+  }
+  isShortcutMultipleKeys(shortcut) {
+    // shortcuts have a key and name properties
+    return (shortcut.key.length > 1);
+  }
+  isKeydownMapCorrect(kdm, cs) {
+    // kdm = keydownMap, cs = currentShortcut
+    let correctCheck = true;
+    for(var i=0; i<kdm.length; i++) {
+      let currentKeydown = kdm[i];
+      let currentShortcutKey = cs.key[i];
+      if(currentKeydown !== currentShortcutKey) {
+        correctCheck = false;
+        break;
+      }
+    }
+    console.log("Keydown map was " + correctCheck);
+    return correctCheck;
+  }
+
+  clearTheKeydownMap() {
+    this.keydownMap = [];
+  }
+
+  evaluateAnswer() {
+    if(this.isKeydownMapCorrect(this.keydownMap, this.currentShortcut)) {
+      this.clearTheKeydownMap();
+      this.showSuccessMessage();
+      this.addToCorrectScoreCounter();
+      this.startNextQuestion();
+    } else {
+      this.showFailureMessage();
+      this.clearTheKeydownMap();
+      this.startNextQuestion();
+    }
   }
 
   showSuccessMessage() {
@@ -169,7 +226,7 @@ export class GameboardComponent {
     //   return this._commandServ.commands[rando];
     
 
-  score() {
+  addToCorrectScoreCounter() {
     this.correctAnswer++;
   }
 

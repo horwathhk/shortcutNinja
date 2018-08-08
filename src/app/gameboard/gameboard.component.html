@@ -38,26 +38,34 @@
 
 <br>
   <!-- Change the text to your liking -->
-  <div id="board">
+<div id="board">
 
-    <div *ngIf="!playerReady" id="content">
-      <p id="title">Keyboard Shortcut Ninja Game</p>
-      <p id="subtitle">Press any key to begin</p>
-    </div>
-      <br>
-      <br>
-    </div>
-
-<br>
-<br>
-<div id="help">
+  <div *ngIf="!playerReady" id="content">
+    <p id="title">Keyboard Shortcut Ninja Game</p>
+    <p id="subtitle">Press any key to begin</p>
+  </div>
+    <br>
+    <br>
+  </div>
+  
+  <br>
+  <br>
+  <div>
+    <button class="button" (click)="evaluateAnswer()" >
+        <i class="fa fa-question-circle"></i>
+        Evaluate Answer
+    </button>
+  </div>
+  <br>
+  <br>
+  <div id="help">
     <button id="button button4" (click)="helper()" >
         <i class="fa fa-question-circle"></i>
         help
     </button>
     <div id="answer" *ngIf="help">{{currentShortcut.answer}}</div>
   </div>
-  </div>
+</div>
 
   
 

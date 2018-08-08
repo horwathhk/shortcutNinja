@@ -26,11 +26,11 @@ export class CommandsService {
     {
       name: 'Scroll image left in window',
       key: [17, 16, 38],
-      answer:"Ctrl–Shift–Page Up"
+      answer:"Ctrl–Shift–PageUp"
     },
     {
       name: 'Fill selection with Background color',
-      key: [17, 32],
+      key: [17, 8],
       answer:"Ctrl–Backspace"
     },
     {
@@ -42,7 +42,7 @@ export class CommandsService {
     {
       name: 'Decrease/Increase hardness of brush',
       key: [16, 189],
-      answer:"Shift–"
+      answer:"Shift –"
     },
     {
       name: 'Undo or Redo operations beyond last one',
