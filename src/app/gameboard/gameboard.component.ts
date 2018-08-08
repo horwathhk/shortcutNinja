@@ -235,6 +235,7 @@ export class GameboardComponent {
       setTimeout(() => {
         this.help = false;
       }, 800);
+    
     }
     
   
