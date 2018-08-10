@@ -30,9 +30,7 @@ export class GameboardComponent implements OnInit {
  test_keys: any = [];
  // commandNames: any = [];
  excelCommands: any;
- help = false;
  answer: string;
-
  currentShortcut: any = {};
  playerReady = false;
  multiPressCounter = 0;
@@ -41,6 +39,9 @@ export class GameboardComponent implements OnInit {
  displayText = true;
  correctAnswer = 0;
  questionHistory = [];
+ help = false;
+ hint = '';
+ hintCounter = 0;
 
  keydownMap = [];
 
@@ -74,6 +75,8 @@ export class GameboardComponent implements OnInit {
       // shan
       // this.message = 'adobePhotoshop';
       // this.startNextQuestion();
+    } else if (event.keyCode === 72 && event.type === 'keyup') {
+      this.showHint();
     } else if (this.isShortcutOnlyOneKey(this.currentShortcut)) {
       if (event.keyCode === this.currentShortcut.key[0]) {
         console.log('User pressed ' + event.keyCode);
@@ -223,12 +226,18 @@ export class GameboardComponent implements OnInit {
     this.correctAnswer++;
   }
 
-  helper() {
+  showHint() {
+    console.log('clicked hint!');
     this.help = true;
-      setTimeout(() => {
-        this.help = false;
-      }, 800);
+    if (this.hintCounter < this.currentShortcut.answer.length) {
+      this.hint = this.hint + this.currentShortcut.answer[this.hintCounter];
     }
+
+    setTimeout( () => {
+      this.help = false;
+    }, 888);
+    this.hintCounter++;
+  }
 
 } // end of class
 
