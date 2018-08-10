@@ -13,7 +13,7 @@ export enum KEY_CODE {
   templateUrl: './gameboard.component.html',
   styleUrls: ['./gameboard.component.css']
 })
-export class GameboardComponent {
+export class GameboardComponent implements OnInit {
  message: any;
  value = 0;
  name: string;
@@ -53,11 +53,11 @@ export class GameboardComponent {
    ) { }
 
    ngOnInit() {
-    this.message = 'adobePhotoshop';
-    this.sharedData.currentMessage.subscribe(message => {
-        this.message = message;
-      }
-    );
+    // this.message = 'adobePhotoshop';
+    // this.sharedData.currentMessage.subscribe(message => {
+    //     this.message = message;
+    //   }
+    // );
    }
 
 @HostListener('window:keydown', ['$event'])
@@ -210,15 +210,9 @@ export class GameboardComponent {
   }
 
   getRandomCommand() {
-    if (this.message === 'adobePhotoshop') {
-      const rando = Math.floor(Math.random() * this._commandServ.photoShopCommands.length);
+      const rando = Math.floor( Math.random() * this._commandServ.currentLibrary.length );
       console.log('Current Shortcut: ' + this.currentShortcut.command);
-      return this._commandServ.photoShopCommands[rando];
-    } else if (this.message === 'microsoftExcel') {
-        const rando = Math.floor(Math.random() * this._commandServ.excelCommands.length);
-        console.log('Current Shortcut: ' + this.currentShortcut.command);
-        return this._commandServ.excelCommands[rando];
-    }
+      return this._commandServ.currentLibrary[rando];
     }
 
     // const rando = Math.floor(Math.random() * this._commandServ.commands.length);

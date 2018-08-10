@@ -51,26 +51,32 @@ export class CommandsService {
     {
       name: 'one excel comamnds',
       key: [1],
+      answer: 'one'
     },
     {
       name: 'two excel commands',
-      key: [50]
+      key: [50],
+      answer: 'two'
     },
     {
       name: 'three excel commands',
-      key: [51]
+      key: [51],
+      answer: 'one'
     },
     {
       name: 'four excel commands',
-      key: [52]
+      key: [52],
+      answer: 'one'
     },
     {
       name: 'five excel commands',
-      key: [53]
+      key: [53],
+      answer: 'one'
     },
     {
       name: 'six excel commands',
-      key: [54]
+      key: [54],
+      answer: 'one'
     }
   ];
   // getCommands(commandLibrary) {
@@ -81,6 +87,15 @@ export class CommandsService {
   //     this.commands = this.excelCommands;
   //   }
   // }
+
+  currentLibrary: any = this.photoShopCommands;
+
+  setCurrentLibraryToPhotoshop() {
+    this.currentLibrary = this.photoShopCommands;
+  }
+  setCurrentLibraryToExcel() {
+    this.currentLibrary = this.excelCommands;
+  }
 
 }
 

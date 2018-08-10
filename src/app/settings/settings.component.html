@@ -6,11 +6,11 @@
         <h4>Select Shortcut Library</h4>
         <div class="form-control">
           <label class="radio">
-            <input type="radio" value="adobePhotoshop" name="library" [(ngModel)]="library">
+            <input type="radio" value="adobePhotoshop" name="library">
             Adobe Photoshop
           </label>
           <label class="radio">
-            <input type="radio"  value="microsoftExcel" name="library" [(ngModel)]="library">
+            <input type="radio"  value="microsoftExcel" name="library">
             Microsoft Excel
           </label>
         </div>
@@ -19,24 +19,26 @@
           <h4>Game Speed</h4>
           <div class="form-control">
             <label class="radio">
-              <input type="radio" value="novice" name="gamespeed" [(ngModel)]="gamespeed">
+              <input type="radio" value="novice" name="gamespeed">
               Novice
             </label>
             <label class="radio">
-              <input type="radio"  value="intermediate" name="gamespeed" [(ngModel)]="gamespeed">
+              <input type="radio"  value="intermediate" name="gamespeed">
               Intermediate
             </label>
             <label class="radio">
-                <input type="radio"  value="advanced" name="gamespeed" [(ngModel)]="gamespeed">
+                <input type="radio"  value="advanced" name="gamespeed">
                 Advanced
               </label>
           </div>
         <div class="panel-footer">
-            <button class="btn btn-primary" type="submit">Save</button>
+            <button class="btn btn-primary" *ngIf="!savedMessageBool" type="submit">Save</button>
+            <button class="btn btn-success" *ngIf="savedMessageBool">Saved!</button>
           </div>
           </div>
-      
+
 </form>
 </div>
-  
-{{setting | json}}
+
+
+
