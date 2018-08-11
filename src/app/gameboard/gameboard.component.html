@@ -1,6 +1,4 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
-
-
   <div id="main">
     <div class="row">
       <div class="col-sm-4">
@@ -30,47 +28,26 @@
             </div>
           </div>
       </div>
-      <div class="col-sm-4"></div>
-    </div><!-- /row -->
-
-
-
-
+      <div class="col-sm-4">
+        <div id="help" *ngIf="playerReady">
+          <button id="button button4" (click)="showHint()" >
+              <i class="fa fa-question-circle hint" title="Press H to see hint"></i>
+          </button>
+          <div id="answer" *ngIf="help">{{hint}}</div>
+      </div>
+    </div>
+  </div><!-- /row -->
 <br>
   <!-- Change the text to your liking -->
 <div id="board">
-
   <div *ngIf="!playerReady" id="content">
     <p id="title">Keyboard Shortcut Ninja Game</p>
     <p id="subtitle">Press any key to begin</p>
   </div>
-    <br>
-    <br>
-  </div>
-
-  <br>
-  <br>
-  <div>
-    <button class="button" (click)="evaluateAnswer()" >
-        <i class="fa fa-question-circle"></i>
-        Evaluate Answer
-    </button>
-  </div>
-  <br>
-  <br>
-  <div id="help">
-    <button id="button button4" (click)="helper()" >
-        <i class="fa fa-question-circle"></i>
-        help
-    </button>
-    <div id="answer" *ngIf="help">{{currentShortcut.answer}}</div>
-  </div>
 </div>
-
-
-
-
-
-
-
-
+<div>
+  <button class="button" (click)="evaluateAnswer()" >
+      <i class="fa fa-question-circle"></i>
+      Evaluate Answer
+  </button>
+</div>

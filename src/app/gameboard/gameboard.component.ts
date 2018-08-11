@@ -13,7 +13,7 @@ export enum KEY_CODE {
   templateUrl: './gameboard.component.html',
   styleUrls: ['./gameboard.component.css']
 })
-export class GameboardComponent {
+export class GameboardComponent implements OnInit {
  message: any;
  value = 0;
  name: string;
@@ -30,9 +30,7 @@ export class GameboardComponent {
  test_keys: any = [];
  // commandNames: any = [];
  excelCommands: any;
- help = false;
  answer: string;
-
  currentShortcut: any = {};
  playerReady = false;
  multiPressCounter = 0;
@@ -41,6 +39,9 @@ export class GameboardComponent {
  displayText = true;
  correctAnswer = 0;
  questionHistory = [];
+ help = false;
+ hint = '';
+ hintCounter = 0;
 
  keydownMap = [];
 
@@ -53,11 +54,11 @@ export class GameboardComponent {
    ) { }
 
    ngOnInit() {
-    this.message = 'adobePhotoshop';
-    this.sharedData.currentMessage.subscribe(message => {
-        this.message = message;
-      }
-    );
+    // this.message = 'adobePhotoshop';
+    // this.sharedData.currentMessage.subscribe(message => {
+    //     this.message = message;
+    //   }
+    // );
    }
 
 @HostListener('window:keydown', ['$event'])
@@ -74,6 +75,8 @@ export class GameboardComponent {
       // shan
       // this.message = 'adobePhotoshop';
       // this.startNextQuestion();
+    } else if (event.keyCode === 72 && event.type === 'keyup') {
+      this.showHint();
     } else if (this.isShortcutOnlyOneKey(this.currentShortcut)) {
       if (event.keyCode === this.currentShortcut.key[0]) {
         console.log('User pressed ' + event.keyCode);
@@ -210,15 +213,9 @@ export class GameboardComponent {
   }
 
   getRandomCommand() {
-    if (this.message === 'adobePhotoshop') {
-      const rando = Math.floor(Math.random() * this._commandServ.photoShopCommands.length);
+      const rando = Math.floor( Math.random() * this._commandServ.currentLibrary.length );
       console.log('Current Shortcut: ' + this.currentShortcut.command);
-      return this._commandServ.photoShopCommands[rando];
-    } else if (this.message === 'microsoftExcel') {
-        const rando = Math.floor(Math.random() * this._commandServ.excelCommands.length);
-        console.log('Current Shortcut: ' + this.currentShortcut.command);
-        return this._commandServ.excelCommands[rando];
-    }
+      return this._commandServ.currentLibrary[rando];
     }
 
     // const rando = Math.floor(Math.random() * this._commandServ.commands.length);
@@ -229,13 +226,18 @@ export class GameboardComponent {
     this.correctAnswer++;
   }
 
-  helper() {
+  showHint() {
+    console.log('clicked hint!');
     this.help = true;
-      setTimeout(() => {
-        this.help = false;
-      }, 800);
-    
+    if (this.hintCounter < this.currentShortcut.answer.length) {
+      this.hint = this.hint + this.currentShortcut.answer[this.hintCounter];
     }
+
+    setTimeout( () => {
+      this.help = false;
+    }, 888);
+    this.hintCounter++;
+  }
 
 } // end of class
 
